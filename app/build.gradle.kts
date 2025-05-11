@@ -17,7 +17,7 @@ repositories {
 
 dependencies {
    // Migrate to JUnit 5 with BOM-managed Jupiter dependencies
-    testImplementation(plaform("org.junit:junit-bom:5.10.0"))
+    testImplementation(platform("org.junit:junit-bom:5.10.0"))
     testImplementation("org.junit.jupiter:junit-jupiter")
 
 
