@@ -36,3 +36,11 @@ application {
     // Define the main class for the application.
     mainClass = "org.springbootuserdemo.Application"
 }
+
+// Configures JUnit 5 platform with test logging for passed/skipped/failed events
+tasks.test {
+    useJUnitPlatform()
+    testLogging {
+        events("passed", "skipped", "failed")
+    }
+}
