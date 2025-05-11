@@ -16,8 +16,10 @@ repositories {
 }
 
 dependencies {
-    // Use JUnit test framework.
-    testImplementation(libs.junit)
+   // Migrate to JUnit 5 with BOM-managed Jupiter dependencies
+    testImplementation(plaform("org.junit:junit-bom:5.10.0"))
+    testImplementation("org.junit.jupiter:junit-jupiter")
+
 
     // This dependency is used by the application.
     implementation(libs.guava)
