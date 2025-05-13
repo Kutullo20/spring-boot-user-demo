@@ -6,8 +6,12 @@
  */
 
 plugins {
-    // Apply the application plugin to add support for building a CLI application in Java.
-    application
+
+    // Required for any Java project
+    id("java") 
+
+    // For CLI apps with a main() method
+    id("application") 
 
     // Spring Boot plugin
     id("org.springframework.boot") version "3.2.0"
@@ -22,6 +26,16 @@ repositories {
 }
 
 dependencies {
+
+    // Spring Boot starter (core framework)
+    implementation("org.springframework.boot:spring-boot-starter")
+
+    // Optional: Additional libraries - Guava 
+    implementation("com.google.guava:guava:32.1.2-jre")
+
+    // Spring Boot test support (includes JUnit 5, Mockito, etc.)
+    testImplementation("org.springframework.boot:spring-boot-starter-test")
+   
    // Migrate to JUnit 5 with BOM-managed Jupiter dependencies
     testImplementation(platform("org.junit:junit-bom:5.10.0"))
     testImplementation("org.junit.jupiter:junit-jupiter")
