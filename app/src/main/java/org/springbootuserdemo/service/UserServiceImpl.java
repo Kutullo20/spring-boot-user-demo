@@ -22,5 +22,11 @@ public class UserServiceImpl implements UserService {
         User newUser = new User(name, surname);
         fakeRepo.insertUser(newUser);
     }
+
+    // Delegates to repository to find and return user by ID (may return null)
+    @Override
+    public User getUser(String id) {
+        return fakeRepo.findUserById(id);
+    }
    
 }
