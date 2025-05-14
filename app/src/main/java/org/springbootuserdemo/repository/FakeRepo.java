@@ -16,6 +16,16 @@ public class FakeRepo implements FakeRepoInterface {
         userDatabase.add(user);
         System.out.println("INSERTED USER: " + user + " (ID: " + user.getId() + ")");
     }
+
+    // Searches for user by ID using stream filter, returns null if not found
+    @Override
+    public User findUserById(String id) {
+        System.out.println("SEARCHING FOR USER WITH ID: " + id);
+        return userDatabase.stream()
+                .filter(user -> user.getId().equals(id))
+                .findFirst()
+                .orElse(null);
+    }
     
     // Test helper methods
     public int getUserCount() {
