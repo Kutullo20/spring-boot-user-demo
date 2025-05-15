@@ -7,6 +7,9 @@ public interface FakeRepoInterface {
      void insertUser(User user); 
 
      // Method to find/get user
-     User findUserById(String id); 
-    
+     User findUserById(String id);
+
+    // Method to delete user
+    void deleteUser(String id);
+
 }
