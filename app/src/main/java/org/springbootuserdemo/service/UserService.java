@@ -8,4 +8,7 @@ public interface UserService {
     
     //Returns the User with the given ID or null if not found
     User getUser(String id); 
+
+    // Method to delete user
+    void removeUser(String id);
 }
