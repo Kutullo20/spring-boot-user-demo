@@ -110,4 +110,58 @@ class UserServiceTests {
         
         System.out.println("=== Test Passed: Correctly handled null ID case ===");
     }
+
+
+    @Test
+    void testDeleteExistingUser() {
+        System.out.println("\n=== Testing Delete Existing User ===");
+        
+        // Add a test user
+        userService.addUser("ToDelete", "User");
+        User addedUser = fakeRepo.getFirstUser();
+        assertNotNull(addedUser, "User should be added");
+        assertEquals(1, fakeRepo.getUserCount(), "Should have 1 user");
+        
+        // Delete the user
+        userService.removeUser(addedUser.getId());
+        
+        // Verify
+        assertEquals(0, fakeRepo.getUserCount(), "Should have 0 users after deletion");
+        assertNull(fakeRepo.findUserById(addedUser.getId()), "User should not be found after deletion");
+        
+        System.out.println("=== Test Passed: User deleted successfully ===");
+    }
+
+    @Test
+    void testDeleteNonExistentUser() {
+        System.out.println("\n=== Testing Delete Non-Existent User ===");
+        
+        // Verify database is empty
+        assertEquals(0, fakeRepo.getUserCount(), "Database should be empty");
+        
+        // Try to delete non-existent user
+        userService.removeUser("non-existent-id");
+        
+        // Verify database is still empty
+        assertEquals(0, fakeRepo.getUserCount(), "Database should still be empty");
+        
+        System.out.println("=== Test Passed: Correctly handled non-existent user deletion ===");
+    }
+
+    @Test
+    void testDeleteUserWithNullId() {
+        System.out.println("\n=== Testing Delete User With Null ID ===");
+        
+        // Add a test user
+        userService.addUser("Null", "Test");
+        assertEquals(1, fakeRepo.getUserCount(), "Should have 1 user");
+        
+        // Try to delete with null ID
+        userService.removeUser(null);
+        
+        // Verify user still exists
+        assertEquals(1, fakeRepo.getUserCount(), "Should still have 1 user");
+        
+        System.out.println("=== Test Passed: Correctly handled null ID deletion case ===");
+    }
 }
