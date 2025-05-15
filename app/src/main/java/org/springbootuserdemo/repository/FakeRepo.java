@@ -26,6 +26,18 @@ public class FakeRepo implements FakeRepoInterface {
                 .findFirst()
                 .orElse(null);
     }
+
+    //delete a user  from the in-memory database
+    @Override
+    public void deleteUser(String id) {
+        User userToDelete = findUserById(id);
+        if (userToDelete != null) {
+            userDatabase.remove(userToDelete);
+            System.out.println("DELETED USER: " + userToDelete + " (ID: " + id + ")");
+        } else {
+            System.out.println("USER NOT FOUND FOR DELETION WITH ID: " + id);
+        }
+    }
     
     // Test helper methods
     public int getUserCount() {
