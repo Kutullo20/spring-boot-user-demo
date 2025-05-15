@@ -28,5 +28,11 @@ public class UserServiceImpl implements UserService {
     public User getUser(String id) {
         return fakeRepo.findUserById(id);
     }
+
+    // Removes a user by ID by delegating to the repository's deleteUser method
+    @Override
+    public void removeUser(String id) {
+        fakeRepo.deleteUser(id);
+    }
    
 }
